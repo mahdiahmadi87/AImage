@@ -84,7 +84,7 @@ async def generate_image(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     try:
         response = together_client.images.generate(
-            prompt=update.message.text,
+            prompt=str(update.message.text),
             model="black-forest-labs/FLUX.1-schnell",
             steps=10,
             n=4
