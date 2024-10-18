@@ -109,11 +109,6 @@ async def generate_image(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=reply_markup
         )
 
-        # Send notification to admin
-        await context.bot.send_message(
-            chat_id=ADMIN_ID,
-            text=f"New image generated:\nUser ID: {user_id}\nPrompt: {user_prompt}\nTranslated: {translated_prompt}"
-        )
 
     except Exception as e:
         await update.message.reply_text("متأسفانه در ساخت تصویر مشکلی پیش آمد. لطفاً دوباره تلاش کنید.")
