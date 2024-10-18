@@ -102,6 +102,7 @@ async def generate_image(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
             "متأسفانه در تولید تصویر خطایی رخ داد. لطفاً دوباره تلاش کنید."
         )
+        print(e)
 
     return ConversationHandler.END
 def main():
