@@ -1,18 +1,22 @@
-import os
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, ContextTypes, filters, ConversationHandler
 from together import Together
+from dotenv import load_dotenv
+from pathlib import Path
+import base64
+import io
+import os 
 
 WAITING_FOR_PROMPT = 1
 
+load_dotenv(Path(".env"))
 
 TOKEN = os.getenv("TOKEN")
-CHANNEL_USERNAME = os.getenv("CHANNEL_USERNAME")
 ADMIN_ID = os.getenv("ADMIN_ID")
+CHANNEL_USERNAME = os.getenv("CHANNEL_USERNAME")
 TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
 
 together_client = Together(api_key=TOGETHER_API_KEY)
-
 
 
 async def check_channel_membership(update: Update, context: ContextTypes.DEFAULT_TYPE) -> bool:
