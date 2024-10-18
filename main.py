@@ -98,24 +98,21 @@ async def generate_image(update: Update, context: ContextTypes.DEFAULT_TYPE):
             response_format="b64_json"
         )
 
-        # Send image to user
-        await context.bot.send_photo(
-            chat_id=update.effective_chat.id,
-            photo=image_response.data[0].b64_json
+        image_data = base64.b64decode(image_response.data[0].b64_json)
+        bio = io.BytesIO(image_data)
+        bio.name = 'generated_image.png'
+        keyboard = [[InlineKeyboardButton("ساخت تصویر جدید", callback_data='create_image')]]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await update.message.reply_photo(
+            photo=bio,
+            caption="تصویر شما آماده شد! 🎨\nبرای ساخت تصویر جدید از دستور /start استفاده کنید.",
+            reply_markup=reply_markup
         )
 
         # Send notification to admin
         await context.bot.send_message(
             chat_id=ADMIN_ID,
             text=f"New image generated:\nUser ID: {user_id}\nPrompt: {user_prompt}\nTranslated: {translated_prompt}"
-        )
-
-        # Ask if user wants to create another image
-        keyboard = [[InlineKeyboardButton("ساخت تصویر جدید", callback_data='create_image')]]
-        reply_markup = InlineKeyboardMarkup(keyboard)
-        await update.message.reply_text(
-            "تصویر شما با موفقیت ساخته شد! آیا می‌خواهید تصویر دیگری بسازید؟",
-            reply_markup=reply_markup
         )
 
     except Exception as e:
