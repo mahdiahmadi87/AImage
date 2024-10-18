@@ -74,16 +74,18 @@ async def generate_image(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("در حال پردازش درخواست شما...")
 
     try:
+        print("translating...", user_prompt)
         # Translate prompt if it's in Persian
         translation_response = together_client.chat.completions.create(
-            model="meta-llama/Llama-3-8b-chat-hf",
+            model="meta-llama/Llama-3.2-11B-Vision-Instruct-Turbo",
             messages=[
                 {"role": "system", "content": "You are an AI assistant. Your job is to translate Persian prompts into English prompts that are suitable for the 'flux schnell' image generation model. Ensure the output is concise and only contains the translated prompt, without any extra text."},
                 {"role": "user", "content": user_prompt},
             ],
         )
-        
+
         translated_prompt = translation_response.choices[0].message.content
+        print(translated_prompt)        
 
         # Generate image
         image_response = together_client.images.generate(
