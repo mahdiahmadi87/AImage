@@ -6,9 +6,9 @@ from together import Together
 WAITING_FOR_PROMPT = 1
 
 
-TOKEN = os.getenv("BOT_TOKEN")
-ADMIN_ID = os.getenv("ADMIN_ID")
+TOKEN = os.getenv("TOKEN")
 CHANNEL_USERNAME = os.getenv("CHANNEL_USERNAME")
+ADMIN_ID = os.getenv("ADMIN_ID")
 TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
 
 together_client = Together(api_key=TOGETHER_API_KEY)
