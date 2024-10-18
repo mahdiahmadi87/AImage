@@ -86,10 +86,12 @@ async def generate_image(update: Update, context: ContextTypes.DEFAULT_TYPE):
         response = together_client.images.generate(
             prompt=str(update.message.text),
             model="black-forest-labs/FLUX.1-schnell",
-            steps=10,
-            n=4
+            width=1024,
+            height=768,
+            steps=4,
+            n=1,
+            response_format="b64_json"
         )
-        
         # Convert base64 to image and send
         image_data = base64.b64decode(response.data[0].b64_json)
         bio = io.BytesIO(image_data)
