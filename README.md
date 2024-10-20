@@ -1,2 +1,11 @@
 # AImage
-telegram bot
+A Telegram bot that creates images using artificial intelligence (AI)
+
+## Install
+Create an .env file with this content (insert tokens and ids)
+```
+TOKEN = ""
+ADMIN_ID = "@Ahmadi_py"
+CHANNEL_USERNAME = "@MA_Codes"
+TOGETHER_API_KEY = ""
+```
