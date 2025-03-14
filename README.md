@@ -1,5 +1,5 @@
 # AImage
-A Telegram bot that creates images using artificial intelligence (AI)
+A Telegram bot that creates images using FLUX with ToGetHerAI
 
 ## Install
 Create an .env file with this content (insert tokens and ids)
